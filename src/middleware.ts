@@ -7,7 +7,6 @@ export const config = {
 export async function middleware(req: NextRequest) {
     const token = await getToken({
         req,
-        secret: process.env.SECRET || "", secureCookie: process.env.NEXTAUTH_URL?.startsWith('https://') ?? process.env.VERCEL_ENV === "preview"
     })
 
     const url = req.nextUrl.clone()

@@ -52,7 +52,6 @@ export const authOptions: NextAuthOptions = {
       }
     })
   ],
-  secret: process.env.SECRET,
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       //checks de sanidade
