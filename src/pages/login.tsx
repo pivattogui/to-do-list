@@ -1,6 +1,6 @@
 import { SignInResponse, signIn } from "next-auth/react"
 import TextInput from "../components/TextInput"
-import { useState } from "react"
+import { useState, KeyboardEvent } from "react"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
 import { toastPromiseUpdate } from "../helpers/toastPromise"
@@ -10,6 +10,12 @@ export default function Login() {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [hidePassword, setHidePassword] = useState<boolean>(true)
+
+    const listenForEnter = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'Enter') {
+            handleLogin()
+        }
+    }
 
     const handleLogin = async () => {
         const toastId = toast.loading('Entrando...')
@@ -28,7 +34,7 @@ export default function Login() {
 
     return (
         <>
-            <div className="h-screen flex flex-col items-center justify-center py-12 sm:px-6 lg:px-8 pb-16 bg-white">
+            <div className="h-screen flex flex-col items-center justify-center py-12 sm:px-6 lg:px-8 pb-16 bg-white" onKeyUp={(e) => listenForEnter(e)}>
                 <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
                     <div className="h-16 w-16 bg-gray-400 rounded-xl"></div>
                     <div>
