@@ -18,7 +18,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.next()
     }
 
-    if (!token && pathname !== '/login') {
+    if (!token && pathname !== '/login' && pathname !== '/register') {
         url.pathname = '/login'
         return NextResponse.redirect(url)
     }

@@ -9,5 +9,6 @@ export const getTasks = async (): Promise<TaskMinifield[]> => {
 
 export const createTask = async (payload: TaskCreate): Promise<TaskMinifield> => {
     const response = await api.post<TaskMinifield>(apiUrls.task, payload);
+    
     return response.data;
 }

@@ -33,16 +33,16 @@ export default function AppLayout({ children }) {
                 </div>
                 :
                 <>
-                    <div className="min-h-full">
-                        <Disclosure as="nav" className="bg-white border-b border-gray-300">
+                    <div>
+                        <Disclosure as="nav" className="bg-white border-b border-gray-300 drop-shadow-sm">
                             {({ open }) => (
                                 <>
-                                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-1" >
                                         <div className="flex justify-between h-16">
                                             <div className="flex">
                                                 <div className="flex-shrink-0 flex items-center">
                                                     <i className="fas fa-sticky-note mr-2 text-gray-700" />
-                                                    <p className="text-lg text-gray-700"><span className="font-medium">Todo</span>List</p>
+                                                    <p className="text-lg text-gray-700 "><span className="font-semibold">Todo</span>List</p>
                                                 </div>
                                             </div>
                                             <div className="hidden sm:ml-6 sm:flex sm:items-center">
@@ -67,9 +67,9 @@ export default function AppLayout({ children }) {
                                                         leaveFrom="transform opacity-100 scale-100"
                                                         leaveTo="transform opacity-0 scale-95"
                                                     >
-                                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-transparent focus:outline-none">
+                                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-fit rounded-md shadow-lg py-1 bg-white ring-transparent focus:outline-none">
                                                             <div className="py-1 px-2 cursor-pointer" onClick={() => signOut()}>
-                                                                <div className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md">
+                                                                <div className="block px-4 py-2 text-base text-gray-500 hover:text-gray-800 hover:bg-gray-100 rounded-md">
                                                                     Sair
                                                                 </div>
                                                             </div>

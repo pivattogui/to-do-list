@@ -11,7 +11,7 @@ const contextClass = {
   success: "bg-white text-green-600 text-green-800",
   error: "bg-white shadow-md text-red-800 font-medium",
   info: "bg-gray-600",
-  default: "bg-indigo-500 text-white",
+  default: "bg-white text-gray-800 shadow-md",
   warning: "bg-white shadow-md text-yellow-700 font-medium",
   dark: "bg-white font-gray-300",
 };

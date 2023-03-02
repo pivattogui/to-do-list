@@ -1,21 +1,39 @@
-import { Dispatch, SetStateAction } from "react"
+import React, { HTMLInputTypeAttribute } from "react"
 
-function TextInput({title, value, setValue, hide = false, }:{title: string, value: string, setValue: Dispatch<SetStateAction<string>>, hide?: boolean}){
+interface TextInputProps {
+    value?: string | number | readonly string[],
+    setValue?: (arg: string) => void,
+    defaultValue?: string,
+    placeholder?: string,
+    area?: boolean,
+    rows?: number,
+    type?: HTMLInputTypeAttribute,
+    disabled?: boolean,
+}
+
+
+function textInputPropsAreEqual(prevTextInput: TextInputProps, nextTextInput: TextInputProps) {
+    return prevTextInput.value == nextTextInput.value &&
+        prevTextInput.placeholder === nextTextInput.placeholder &&
+        prevTextInput.area === nextTextInput.area &&
+        prevTextInput.rows === nextTextInput.rows &&
+        prevTextInput.disabled === nextTextInput.disabled
+}
+
+function TextInput({ value, setValue, defaultValue, placeholder, area = false, rows = 10, disabled = false, type = "text" }: TextInputProps) {
+    const props = {
+        value,
+        onChange: (e) => { if (setValue) setValue(e.target.value) },
+        defaultValue,
+        className: "focus:outline-none focus:border-gray-500 block w-full px-4 py-3 mb-2 transition-colors text-sm placeholder-gray-500 bg-white border rounded",
+        type,
+        placeholder,
+        disabled
+    }
+
     return (
-        <div>
-            <label className="block text-sm font-medium text-gray-700">
-                {title}
-            </label>
-            <div className="mt-1">
-                <input
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
-                    onChange={(e) => setValue(e.target.value)}
-                    value={value}
-                    type={hide ? "password" : "text"}
-                />
-            </div>
-        </div>
+        area ? <textarea rows={rows} {...props} /> : <input {...props} />
     )
 }
 
-export default TextInput
+export default React.memo(TextInput, textInputPropsAreEqual)
