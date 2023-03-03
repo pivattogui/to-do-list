@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import bcrypt from 'bcrypt'
 import { CreateUserSchema, UserCreate } from '../../types/user';
+import prisma from '../../lib/prisma'
 
 export default async function handler(
     req: NextApiRequest,
