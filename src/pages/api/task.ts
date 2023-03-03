@@ -27,7 +27,7 @@ export default async function handler(
 
                 return res.status(200).json(tasks)
             } catch (err) {
-                return res.status(400).json({ message: "error" })
+                return res.status(400).json({ error: err })
             }
         }
         case 'POST': {
@@ -47,21 +47,21 @@ export default async function handler(
 
                 return res.status(200).json({ message: "ok" })
             } catch (err) {
-                return res.status(400).json({ message: "error" })
+                return res.status(400).json({ error: err })
             }
         }
         case 'PUT': {
             try {
                 return res.status(200).json({ message: "ok" })
             } catch (err) {
-                return res.status(400).json({ message: "error" })
+                return res.status(400).json({ error: err })
             }
         }
         case 'DELETE': {
             try {
                 return res.status(200).json({ message: "ok" })
             } catch (err) {
-                return res.status(400).json({ message: "error" })
+                return res.status(400).json({ error: err })
             }
         }
     }
