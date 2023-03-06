@@ -1,9 +1,11 @@
-import { Task } from "@prisma/client";
+import { Task, Status } from "@prisma/client";
 import Joi from "joi";
 
 export type TaskMinifield = Pick<Task, 'id' | 'title' | 'status' | 'content' | 'created_at'>
 
-export type TaskCreate = Pick<Task, 'title' | 'content' >
+export type TaskStatus = Status
+
+export type TaskCreate = Pick<Task, 'title' | 'content'>
 
 export const CreateTaskSchema = Joi.object({
     title: Joi.string().required(),

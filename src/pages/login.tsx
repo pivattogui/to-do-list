@@ -57,10 +57,11 @@ export default function Login() {
                                 <label className="block text-sm font-medium text-gray-700">
                                     Senha
                                 </label>
-                                <TextInput
-                                    setValue={setPassword}
+                                <input
+                                    className="focus:outline-none focus:border-gray-500 block w-full px-4 py-3 mb-2 transition-colors text-sm placeholder-gray-500 bg-white border rounded"
                                     value={password}
-                                    type="password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    type={hidePassword ? "password" : "text"}
                                 />
                             </div>
                             <div className="flex items-center justify-between">
