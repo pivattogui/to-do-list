@@ -5,9 +5,9 @@ export type TaskMinifield = Pick<Task, 'id' | 'title' | 'status' | 'content' | '
 
 export type TaskStatus = Status
 
-export type TaskCreate = Pick<Task, 'title' | 'content'>
+export type TaskPayload = Pick<Task, 'title' | 'content'>
 
-export const CreateTaskSchema = Joi.object({
+export const TaskPayloadSchema = Joi.object({
     title: Joi.string().required(),
     content: Joi.string().required(),
 })

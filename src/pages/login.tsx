@@ -4,6 +4,7 @@ import { useState, KeyboardEvent } from "react"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
 import { toastPromiseUpdate } from "../helpers/toastPromise"
+import Button from "../components/Button"
 
 export default function Login() {
     const router = useRouter()
@@ -18,6 +19,8 @@ export default function Login() {
     }
 
     const handleLogin = async () => {
+        if (!email || !password) return toast.error('Preencha todos os campos!')
+
         const toastId = toast.loading('Entrando...')
         signIn("credentials", { username: email, password, redirect: false }).then((res) => {
             const response: SignInResponse = res!
@@ -78,12 +81,7 @@ export default function Login() {
                                 </div>
                             </div>
                             <div>
-                                <button
-                                    onClick={handleLogin}
-                                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                    Entrar
-                                </button>
+                                <Button text="Entrar" action={handleLogin} />
                             </div>
 
                         </div>

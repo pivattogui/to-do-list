@@ -12,7 +12,7 @@ model User {
   id          String   @id @default(uuid()) @db.VarChar(36)
   name        String
   email       String   @unique
-  description String?
+  description String?  
   password    String
   tasks       Task[]
   created_at  DateTime @default(now())
@@ -22,7 +22,7 @@ model User {
 model Task {
   id         String   @id @default(uuid()) @db.VarChar(36)
   title      String
-  content    String
+  content    String   @db.Text
   status     Status   @default(PENDING)
   user       User     @relation(fields: [user_id], references: [id])
   user_id    String

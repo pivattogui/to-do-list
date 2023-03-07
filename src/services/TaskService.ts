@@ -1,14 +1,18 @@
 import apiUrls from "../constants/apiUrls";
 import api from "../lib/api";
-import { TaskCreate, TaskMinifield } from "../types/task";
+import { TaskPayload, TaskMinifield } from "../types/task";
 
 export const getTasks = async (): Promise<TaskMinifield[]> => {
-    const response = await api.get<TaskMinifield[]>(apiUrls.task);
+    const response = await api.get<TaskMinifield[]>(apiUrls.task.base);
     return response.data;
 }
 
-export const createTask = async (payload: TaskCreate): Promise<TaskMinifield> => {
-    const response = await api.post<TaskMinifield>(apiUrls.task, payload);
-    
+export const createTask = async (payload: TaskPayload): Promise<TaskMinifield> => {
+    const response = await api.post<TaskMinifield>(apiUrls.task.base, payload);
+
     return response.data;
+}
+
+export const updateTask = async (id: string, payload: TaskPayload): Promise<void> => {
+    await api.post<void>(apiUrls.task.id(id), payload);
 }

@@ -5,12 +5,6 @@ import { ButtonType, ButtonTheme } from '../types';
 function Button({ theme = ButtonTheme.SOLID, icon, text, action }: ButtonType) {
     let buttonClassName = ""
     switch (theme) {
-        case ButtonTheme.BIGGER:
-            buttonClassName = "rounded-md text-xs text-white bg-indigo-500 hover:bg-indigo-600"
-            break;
-        case ButtonTheme.LIGHT:
-            buttonClassName = "rounded-md text-sm text-blue-900 bg-blue-100 hover:bg-blue-200 min-w-[80px]"
-            break;
         case ButtonTheme.WHITE:
             buttonClassName = "border text-sm rounded-md shadow-sm bg-white text-slate-600 hover:bg-gray-100"
             break;
