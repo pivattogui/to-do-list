@@ -21,6 +21,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
     <SessionProvider session={session}>
       <Head>
         <title>ToDoList</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="h-screen">
         <AppLayout>

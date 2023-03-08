@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
-import { TaskPayload, TaskPayloadSchema  } from '../../../types/task';
+import { TaskPayload, TaskPayloadSchema } from '../../../types/task';
 
 export default async function handler(
     req: NextApiRequest,
@@ -23,7 +23,7 @@ export default async function handler(
                         content: true,
                         created_at: true,
                     }
-                })       
+                })
 
                 return res.status(200).json(tasks)
             } catch (err) {
@@ -32,19 +32,19 @@ export default async function handler(
         }
         case 'POST': {
             try {
-                if(TaskPayloadSchema.validate(body).error) return res.status(400).json({ error: TaskPayloadSchema.validate(body).error })
+                if (TaskPayloadSchema.validate(body).error) return res.status(400).json({ error: TaskPayloadSchema.validate(body).error })
 
                 const payload = body as TaskPayload
 
-                await prisma.task.create({
+                const task = await prisma.task.create({
                     data: {
                         title: payload.title,
                         content: payload.content,
                         user_id: session.user.id,
                     }
                 })
-                
-                return res.status(200).json({ message: "ok" })
+
+                return res.status(200).json(task)
             } catch (err) {
                 return res.status(400).json({ error: err })
             }

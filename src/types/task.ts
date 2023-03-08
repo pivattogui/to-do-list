@@ -11,3 +11,7 @@ export const TaskPayloadSchema = Joi.object({
     title: Joi.string().required(),
     content: Joi.string().required(),
 })
+
+export const TaskStatusSchema = Joi.object({
+    status: Joi.string().valid('PENDING', 'DONE').required()
+})

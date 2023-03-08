@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { TaskPayload, TaskPayloadSchema } from "../../../../types/task";
+import { TaskPayload, TaskPayloadSchema, TaskStatus, TaskStatusSchema } from "../../../../types/task";
 import prisma from '../../../../lib/prisma'
 
 export default async function handler(
@@ -13,17 +13,51 @@ export default async function handler(
     switch (method) {
         case 'POST': {
             try {
-                if(TaskPayloadSchema.validate(body).error) return res.status(400).json({ error: TaskPayloadSchema.validate(body).error })
+                if (TaskPayloadSchema.validate(body).error) return res.status(400).json({ error: TaskPayloadSchema.validate(body).error })
 
                 const payload = body as TaskPayload
 
                 await prisma.task.update({
-                    where:{
+                    where: {
                         id: taskId
                     },
-                    data:{
+                    data: {
                         title: payload.title,
                         content: payload.content,
+                    }
+                })
+
+                return res.status(200).json({ message: 'ok' })
+            } catch (err) {
+                return res.status(400).json({ error: err })
+            }
+        }
+        case "PUT": {
+            try {
+                if (TaskStatusSchema.validate(body).error) return res.status(400).json({ error: TaskStatusSchema.validate(body).error })
+
+                const status = body.status as TaskStatus
+
+                await prisma.task.update({
+                    where: {
+                        id: taskId
+                    },
+                    data: {
+                        status: status
+                    }
+                })
+
+                return res.status(200).json({ message: 'ok' })
+
+            } catch (err) {
+                return res.status(400).json({ error: err })
+            }
+        }
+        case "DELETE": {
+            try {
+                await prisma.task.delete({
+                    where: {
+                        id: taskId
                     }
                 })
 
