@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import { toast } from "react-toastify"
 import { toastPromiseUpdate } from "../helpers/toastPromise"
 import Button from "../components/Button"
+import Footer from "../components/Footer"
 
 export default function Login() {
     const router = useRouter()
@@ -93,7 +94,7 @@ export default function Login() {
                         </span>
                     </div>
                 </div>
-
+                <Footer />
             </div >
         </>
     )

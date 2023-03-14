@@ -3,10 +3,11 @@ import Joi from "joi";
 
 export type UserMinifield = Pick<User, 'id' | 'name' | 'email'>
 
-export type UserCreate = Pick<User, 'name' | 'email' | 'password'>
+export type RegisterUser = Pick<User, 'name' | 'email' | 'password'>
 
-export const CreateUserSchema = Joi.object({
+export const RegisterSchema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
 })
+

@@ -1,7 +1,7 @@
 import apiUrls from "../constants/apiUrls";
 import api from "../lib/api";
-import { UserCreate } from "../types/user";
+import { RegisterUser } from "../types/register";
 
-export const createUser = async (payload: UserCreate): Promise<void> => {
-    await api.post<void>(apiUrls.user, payload);
+export const registerUser = async (payload: RegisterUser): Promise<void> => {
+    await api.post<void>(apiUrls.register, payload);
 }

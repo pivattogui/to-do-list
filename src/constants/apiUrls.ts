@@ -4,7 +4,7 @@ const taskSegment = (...segments: string[]) =>
     `/task${joinSegments(...segments)}`;
 
 const apis = {
-    user: 'user',
+    register: 'register',
     task: {
         base: taskSegment(),
         id: (id: string) => taskSegment(id),

@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
     const { pathname } = url
 
     /* PAGINAS PUBLICAS */
-    if (pathname.includes('/api/auth') || pathname.includes('/public')) {
+    if (pathname.includes('/api/auth') || pathname.includes('/api/register')) {
         return NextResponse.next()
     }
 

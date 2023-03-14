@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import bcrypt from 'bcrypt'
-import { CreateUserSchema, UserCreate } from '../../types/user';
+import { RegisterSchema, RegisterUser } from '../../types/register';
 import prisma from '../../lib/prisma'
 
 export default async function handler(
@@ -12,13 +12,13 @@ export default async function handler(
     switch (method) {
         case 'POST': {
             try {
-                if (CreateUserSchema.validate(body).error) return res.status(400).json({ error: CreateUserSchema.validate(body).error })
+                if (RegisterSchema.validate(body).error) return res.status(400).json({ error: RegisterSchema.validate(body).error })
 
-                const payload = body as UserCreate
+                const payload = body as RegisterUser
 
                 const passHashed = await bcrypt.hash(payload.password, 11)
 
-                await prisma.user.create({
+                const user = await prisma.user.create({
                     data: {
                         name: payload.name,
                         email: payload.email,

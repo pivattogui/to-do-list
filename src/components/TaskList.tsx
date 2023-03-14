@@ -15,13 +15,25 @@ export default function TaskList() {
             {loading ?
                 <TaskListSkeleton />
                 :
-                <div className="bg-white shadow overflow-hidden sm:rounded-md">
-                    <ul role="list" className="divide-y divide-gray-200">
-                        {tasks.map((task) => (
-                            <TaskItem task={task} />
-                        ))}
-                    </ul>
-                </div>
+                tasks.length ?
+                    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+                        <ul role="list" className="divide-y divide-gray-200">
+                            {tasks.map((task) => (
+                                <TaskItem task={task} />
+                            ))}
+                        </ul>
+                    </div>
+                    :
+                    <div className="bg-white shadow overflow-hidden sm:rounded-md">
+                        <div className="px-4 py-5 sm:px-6">
+                            <h3 className="text-lg leading-6 font-medium text-gray-800">
+                                Nenhuma tarefa encontrada
+                            </h3>
+                            <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                                Clique no botão "Nova tarefa" para adicionar uma nova tarefa.
+                            </p>
+                        </div>
+                    </div>
             }
         </div>
     )

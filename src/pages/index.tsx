@@ -13,9 +13,8 @@ export default function Home() {
   }), shallow)
 
   useEffect(() => {
-    if (tasks.length) return
     getTasks()
-  }, [tasks])
+  }, [])
 
   return (
       <Tasks />
