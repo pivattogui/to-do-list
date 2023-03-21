@@ -1,5 +1,5 @@
 # Sistema de Lista de Tarefas
-Este projeto foi desenvolvido com o objetivo de servir de estudo e prática de deploy utilizando um banco de dados. O sistema consiste em uma lista de tarefas com descrições personalizadas utilizando Markdown, onde os dados são armazenados no banco de dados e exibidos ao usuário. Além disso, o usuário também possui uma tela de login para acessar o sistema.
+Este projeto foi desenvolvido com o objetivo de servir de estudo e prática de deploy utilizando um banco de dados. O sistema consiste em uma lista de tarefas com descrições personalizadas, onde tais são guardadas na conta do usuário dentro do banco de dados.
 
 ### Tecnologias utilizadas
 - **Next.JS** para implementação de interfaces e API
