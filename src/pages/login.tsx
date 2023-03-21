@@ -37,7 +37,7 @@ export default function Login() {
 
     return (
         <>
-            <div className="h-screen flex flex-col items-center justify-center py-12 sm:px-6 lg:px-8 pb-16 bg-white" onKeyUp={(e) => listenForEnter(e)}>
+            <div className="h-screen flex flex-col items-center justify-center py-12 sm:px-8 pb-16 bg-white" onKeyUp={(e) => listenForEnter(e)}>
                 <div className="sm:mx-auto sm:w-full sm:max-w-md flex flex-col items-center">
                     <div className="flex-shrink-0 flex items-center text-4xl font-normal">
                         <i className="fas fa-sticky-note mr-2 text-gray-700" />
@@ -46,7 +46,7 @@ export default function Login() {
                 </div>
 
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                    <div className="bg-white py-6 px-4 shadow sm:rounded-lg sm:px-10">
+                    <div className="sm:bg-white py-6 sm:shadow sm:rounded-lg sm:px-10 sm:w-full w-[275px]">
                         <div className="flex flex-col gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">

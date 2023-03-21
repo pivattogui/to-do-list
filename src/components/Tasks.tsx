@@ -3,7 +3,6 @@ import { useTaskStore } from "../stores/task";
 import AddItemTabHeader from "./AddItemTabHeader";
 import TaskList from "./TaskList";
 import { TaskEditor } from "./TaskEditor";
-import { useState } from "react";
 
 export function Tasks() {
     const { showTask, setShowTask } = useTaskStore((state) => ({
@@ -16,13 +15,17 @@ export function Tasks() {
 
 
     return (
-        <div className="flex items-center justify-center">
+        <div className={`flex items-center justify-center ${showTask ? "sm:px-4": "px-4"}`}>
             {showTask ?
                 <TaskEditor />
                 :
-                <div className="bg-white py-6 px-4 shadow sm:rounded-xl sm:px-7 mt-6 max-w-6xl w-full max-h-[87vh]">
-                    <AddItemTabHeader name='Tarefas' description='Gerencie sua lista de tarefas' buttonName='Nova tarefa' action={() => setShowTask(true)} />
-                    <TaskList />
+                <div className="sm:bg-white sm:p-6 sm:shadow sm:rounded-xl max-w-6xl w-full">
+                    <div className="hidden sm:block">
+                        <AddItemTabHeader name='Tarefas' description='Gerencie sua lista de tarefas' buttonName='Nova tarefa' action={() => setShowTask(true)} />
+                    </div>
+                    <div className="overflow-auto">
+                        <TaskList />
+                    </div>
                 </div>
             }
         </div>

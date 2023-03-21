@@ -21,6 +21,9 @@ html {
 }
 
 @media (max-width: 956px) {
+    html {
+        background-color: rgb(250 250 250);
+    }
     .tiptap p {
         font-size: 18px !important;
     }

@@ -33,11 +33,11 @@ export default function AppLayout({ children }) {
                 </div>
                 :
                 <>
-                    <div>
-                        <Disclosure as="nav" className="bg-white border-b border-gray-300 drop-shadow-sm">
+                    <div className="fixed w-full z-[999]">
+                        <Disclosure as="nav" className="bg-white/90 border-b border-gray-300 drop-shadow-sm">
                             {({ open }) => (
                                 <>
-                                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-1" >
+                                    <div className="max-w-7xl mx-auto px-4 sm:px-6" >
                                         <div className="flex justify-between h-16">
                                             <div className="flex">
                                                 <div className="flex-shrink-0 flex items-center">
@@ -49,7 +49,7 @@ export default function AppLayout({ children }) {
                                                 <Menu as="div" className="ml-3 relative">
                                                     <div>
                                                         <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-0 ">
-                                                        <div className="flex flex-col justify-end items-end mr-2">
+                                                            <div className="flex flex-col justify-end items-end mr-2">
                                                                 <p className="text-gray-700 font-medium text-sm ml-2">{session?.user?.name}</p>
                                                                 <p className="text-gray-500 text-xs ml-2">{session?.user?.email}</p>
                                                             </div>
@@ -113,7 +113,9 @@ export default function AppLayout({ children }) {
                             )}
                         </Disclosure>
                     </div>
-                    {children}
+                    <div className="pt-20">
+                        {children}
+                    </div>
                 </>
             }
         </>

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { toastPromiseUpdate } from "../helpers/toastPromise";
 
 export default function TaskItem({ task }: { task: TaskMinifield }) {
-    const { selectTask, setShowTask,removeTask,changeStatusTask } = useTaskStore((state) => ({
+    const { selectTask, setShowTask, removeTask, changeStatusTask } = useTaskStore((state) => ({
         selectTask: state.selectTask,
         setShowTask: state.setShowTask,
         removeTask: state.removeTask,
@@ -19,16 +19,16 @@ export default function TaskItem({ task }: { task: TaskMinifield }) {
 
     const handleDelete = () => {
         const toastId = toast.loading('Deletando tarefa...')
-        
-        removeTask(task.id).then(()=>{
+
+        removeTask(task.id).then(() => {
             toast.update(toastId, toastPromiseUpdate('success', 'Tarefa removida com sucesso!'))
         })
     }
 
     const handleDone = (status: TaskStatus) => {
         const toastId = toast.loading('Concluindo tarefa...')
-        
-        changeStatusTask(task.id, status).then(()=>{
+
+        changeStatusTask(task.id, status).then(() => {
             toast.update(toastId, toastPromiseUpdate('success', 'Tarefa concluída com sucesso!'))
         })
     }
@@ -54,7 +54,7 @@ export default function TaskItem({ task }: { task: TaskMinifield }) {
         }
 
         return (
-            <div className="flex items-center px-4">
+            <div className="flex items-center sm:px-4">
                 <div className={`mx-4 h-8 w-8 border rounded-full flex justify-center items-center ${theme}`}
                     onClick={(e) => { e.stopPropagation(); action() }}>
                     <i className={`mt-0.5 ${icon}`} />
@@ -79,24 +79,24 @@ export default function TaskItem({ task }: { task: TaskMinifield }) {
     }
 
     return (
-        <li className="cursor-pointer"
+        <li className="cursor-pointer mt-2 sm:mt-0 border sm:border-0 rounded-md shadow sm:shadow-none"
             onClick={() => { selectTask(task.id), setShowTask(true) }}
             onMouseLeave={() => setSelected(false)}
             onMouseEnter={() => setSelected(true)}
         >
-            <div className="flex justify-between hover:bg-gray-50">
-                <div className="flex items-center">
-                    <div className={`relative ${selected ? 'w-14' : 'w-2'} transition-all bg-gray-500 flex items-center justify-center py-10`} >
+            <div className="flex flex-col justify-between hover:bg-gray-50">
+                <div className="flex items-center sm:p-0 p-4"> 
+                    <div className={`relative ${selected ? 'w-14' : 'w-2'} transition-all bg-gray-500 sm:flex hidden items-center justify-center py-10 `} >
                         {selected ? <i className="absolute fas fa-sticky-note text-white" /> : <></>}
                     </div>
                     <div className="min-w-0 flex-1 flex items-center">
-                        <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                        <div className="min-w-0 flex-1 sm:px-4 md:grid md:grid-cols-2 md:gap-4">
                             <div>
                                 <p className="text-sm font-medium text-gray-600 truncate">{task.title}</p>
                                 <p className="mt-1 text-sm text-gray-500">
                                     <div className="flex items-center">
                                         <i className="fas fa-file-alt mr-2" />
-                                        <span className="truncate max-w-sm w-sm">{task.content?.replace(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, '')}</span>
+                                        <span className="truncate max-w-sm w-sm">{task.content}</span>
                                     </div>
                                 </p>
                             </div>
@@ -112,8 +112,9 @@ export default function TaskItem({ task }: { task: TaskMinifield }) {
                             </div>
                         </div>
                     </div>
+                    <TaskAction />
                 </div>
-                <TaskAction />
+                <div className="h-2 bg-gray-500 sm:hidden w-full rounded-b" />
             </div>
         </li>
     )

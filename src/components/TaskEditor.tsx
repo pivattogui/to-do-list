@@ -1,9 +1,9 @@
 import { shallow } from "zustand/shallow"
 import { useTaskStore } from "../stores/task"
-import Tiptap from "./TipTap"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import { toastPromiseUpdate } from "../helpers/toastPromise"
+import Button from "./Button"
 
 export function TaskEditor() {
     const { selectedTask, clearSelectedTask, updateTask, setShowTask, createTask } = useTaskStore((state) => ({
@@ -19,15 +19,15 @@ export function TaskEditor() {
 
 
     const handleSaveTask = () => {
-        if(loading) return toast.error('Tarefa já está sendo criada!')
-        setLoading(true)
+        if (loading) return toast.error('Tarefa já está sendo criada!')
 
+        if (!title || !content) return toast.error('Preencha todos os campos!')
+
+        setLoading(true)
         return selectedTask ? handleUpdateTask() : handleCreateTask()
     }
 
     const handleCreateTask = () => {
-        if (!title || !content) return toast.error('Preencha todos os campos!')
-        
         const toastId = toast.loading('Criando tarefa...')
 
         createTask({ title, content }).then(() => {
@@ -37,9 +37,10 @@ export function TaskEditor() {
     }
 
     const handleUpdateTask = () => {
-        if (!title || !content) return toast.error('Preencha todos os campos!')
-
-        if(title === selectedTask.title && content === selectedTask.content) return toast.error('Não há alterações para serem salvas!')
+        if (title === selectedTask.title && content === selectedTask.content) {
+            setLoading(false)
+            return toast.error('Não há alterações para serem salvas!')
+        }
 
         const toastId = toast.loading('Atualizando tarefa...')
 
@@ -54,18 +55,41 @@ export function TaskEditor() {
         setShowTask(false)
     }
 
-
     return (
-        <div className="flex items-center justify-center">
-            <div className="bg-white py-6 px-4 shadow sm:rounded-xl sm:px-7 mt-6 max-w-6xl w-full max-h-[87vh]">
-                <div className="flex items-center">
-                    <div className="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 cursor-pointer" onClick={closeTask}>
-                        <i className="fas fa-chevron-left text-gray-600" />
-                    </div>
-                    <span className="ml-2 font-semibold text-gray-500">Voltar</span>
+        <div className="sm:bg-white sm:p-6 sm:shadow sm:rounded-xl max-w-6xl w-full">
+            <div className="flex items-center w-full sm:px-0 px-4">
+                <div className="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 cursor-pointer" onClick={closeTask}>
+                    <i className="fas fa-chevron-left text-gray-600" />
                 </div>
-                <div className="mt-4">
-                    <Tiptap setTitle={setTitle} title={title} setContent={setContent} content={content} saveTask={handleSaveTask} />
+                <span className="ml-2 font-semibold text-gray-500">Voltar</span>
+            </div>
+
+            <div className="relative mt-4 px-4 h-[70vh] sm:flex sm:flex-col sm:justify-center">
+                <div className="border-gray-200 rounded-lg shadow-sm overflow-hidden border ring-0 focus-within:ring-0 focus-within:ring-gray-200">
+                    <input
+                        placeholder="Título"
+                        className="focus:outline-none text-2xl focus:border-0 block w-full px-4 py-2 font-bold transition-colors text-gray-800 placeholder-gray-500 bg-white"
+                        value={title}
+                        onChange={(e) => setTitle(e?.target?.value)}
+                    />
+                    <div className="border-b"></div>
+                    <textarea
+                        placeholder="Descrição"
+                        rows={18}
+                        className="focus:outline-none focus:border-0 resize-none block w-full px-4 py-2 text-gray-700 transition-colors text-sm placeholder-gray-500 bg-white"
+                        value={content}
+                        onChange={(e) => setContent(e?.target?.value)}
+                    />
+                    <div className="border-t px-3"></div>
+
+                    <div className="px-2 py-2 flex justify-end items-center space-x-3 sm:px-3">
+                        <div className="flex-shrink-0">
+                            <Button
+                                action={handleSaveTask}
+                                text="Salvar"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

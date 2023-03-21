@@ -3,7 +3,6 @@ import { useTaskStore } from "../stores/task"
 import { shallow } from "zustand/shallow";
 import TaskItem from "./TaskItem";
 
-
 export default function TaskList() {
     const { loading, tasks } = useTaskStore((state) => ({
         loading: state.loading,
@@ -16,8 +15,8 @@ export default function TaskList() {
                 <TaskListSkeleton />
                 :
                 tasks.length ?
-                    <div className="bg-white shadow overflow-hidden sm:rounded-md">
-                        <ul role="list" className="divide-y divide-gray-200">
+                    <div className="sm:bg-white overflow-hidden rounded-md">
+                        <ul role="list" className="sm:divide-y sm:divide-gray-200">
                             {tasks.map((task) => (
                                 <TaskItem task={task} />
                             ))}
