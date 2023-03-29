@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 import { toastPromiseUpdate } from "../helpers/toastPromise"
 import Button from "./Button"
 import { PriorityOptionsMenu } from "./PriorityOptionsMenu"
-import { Priority } from "@prisma/client"
+import { TaskPriority } from "../types/task"
 
 export function TaskEditor() {
     const { selectedTask, clearSelectedTask, updateTask, setShowTask, createTask } = useTaskStore((state) => ({
@@ -19,7 +19,7 @@ export function TaskEditor() {
 
     const [title, setTitle] = useState<string>(selectedTask?.title || '')
     const [content, setContent] = useState<string>(selectedTask?.content || '')
-    const [priority, setPriority] = useState<Priority>(selectedTask?.priority || 'MEDIUM')
+    const [priority, setPriority] = useState<TaskPriority>(selectedTask?.priority || 'MEDIUM')
 
 
     const handleSaveTask = () => {
@@ -100,7 +100,7 @@ export function TaskEditor() {
                     />
                     <div className="border-t px-3"></div>
 
-                    <div className="py-2 flex justify-between items-center px-3">
+                    <div className="py-2 flex justify-between items-center px-3 sm:hidden">
                         <PriorityOptionsMenu
                             priority={priority}
                             setPriority={setPriority}

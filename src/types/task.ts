@@ -16,3 +16,10 @@ export const TaskPayloadSchema = Joi.object({
 export const TaskStatusSchema = Joi.object({
     status: Joi.string().valid('PENDING', 'DONE').required()
 })
+
+export type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH'
+
+export type TaskPriorityOptions = {
+    name: string
+    type: TaskPriority
+}[]

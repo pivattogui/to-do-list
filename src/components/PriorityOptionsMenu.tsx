@@ -1,20 +1,20 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { Priority } from '@prisma/client'
+import { TaskPriority, TaskPriorityOptions } from '../types/task'
 
-const options = [
-    { name: 'Alta', type: Priority.HIGH },
-    { name: 'Média', type: Priority.MEDIUM },
-    { name: 'Baixa', type: Priority.LOW },
+const options: TaskPriorityOptions = [
+    { name: 'Alta', type: "HIGH" },
+    { name: 'Média', type: "MEDIUM" },
+    { name: 'Baixa', type: "LOW" },
 ]
 
 interface PriorityOptionsMenuProps {
-    priority: Priority
-    setPriority: (priority: Priority) => void
+    priority: TaskPriority
+    setPriority: (priority: TaskPriority) => void
 }
 
 export function PriorityOptionsMenu({ priority, setPriority }: PriorityOptionsMenuProps) {
-    const PriorityIcon = (type: Priority) => {
+    const PriorityIcon = (type: TaskPriority) => {
         switch (type) {
             case 'LOW':
                 return (
