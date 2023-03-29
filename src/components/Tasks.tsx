@@ -13,7 +13,6 @@ export function Tasks() {
         setShowTask: state.setShowTask
     }), shallow)
 
-
     return (
         <div className={`flex items-center justify-center ${showTask ? "sm:px-4": "px-4"}`}>
             {showTask ?

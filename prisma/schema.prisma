@@ -26,8 +26,15 @@ model Task {
   status     Status   @default(PENDING)
   user       User     @relation(fields: [user_id], references: [id])
   user_id    String
+  priority   Priority @default(MEDIUM)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
 }
 
 enum Status {

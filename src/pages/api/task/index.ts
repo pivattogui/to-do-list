@@ -22,6 +22,7 @@ export default async function handler(
                         title: true,
                         status: true,
                         content: true,
+                        priority: true,
                         created_at: true,
                     }
                 })

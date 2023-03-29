@@ -24,6 +24,7 @@ export default async function handler(
                     data: {
                         title: payload.title,
                         content: payload.content,
+                        priority: payload.priority
                     }
                 })
 

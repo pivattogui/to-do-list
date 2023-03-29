@@ -9,12 +9,9 @@ export type TaskState = {
     showTask: boolean
     loading: boolean
 
-
     getTasks: () => Promise<void>
     setShowTask: (show: boolean) => void
     updateTask: (id: string, payload: TaskPayload) => Promise<void>
-    setTaskTitle: (id: string, title: string) => void
-    setTaskContent: (id: string, content: string) => void
     createTask: (payload: TaskPayload) => Promise<void>
     clearSelectedTask: () => void
     selectTask: (id: string) => void
@@ -50,24 +47,7 @@ export const useTaskStore = create<TaskState>((set, get) => ({
 
             task.title = payload.title
             task.content = payload.content
-        }))
-    },
-    setTaskTitle: (id, title) => {
-        set(produce((state) => {
-            const task = state.tasks.find((task) => task.id === id)
-
-            if (!task) return
-
-            task.title = title
-        }))
-    },
-    setTaskContent: (id, content) => {
-        set(produce((state) => {
-            const task = state.tasks.find((task) => task.id === id)
-
-            if (!task) return
-
-            task.content = content
+            task.priority = payload.priority
         }))
     },
     createTask: async (payload) => {
