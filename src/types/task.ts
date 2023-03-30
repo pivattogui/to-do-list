@@ -1,4 +1,4 @@
-import { Task, Status } from "@prisma/client";
+import { Task, Status, Priority } from "@prisma/client";
 import Joi from "joi";
 
 export type TaskMinifield = Pick<Task, 'id' | 'title' | 'status' | 'content' | 'created_at' | 'priority'>
@@ -17,7 +17,7 @@ export const TaskStatusSchema = Joi.object({
     status: Joi.string().valid('PENDING', 'DONE').required()
 })
 
-export type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH'
+export type TaskPriority = Priority
 
 export type TaskPriorityOptions = {
     name: string
