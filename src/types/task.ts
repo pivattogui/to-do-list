@@ -1,11 +1,15 @@
 import { Task, Status, Priority } from "@prisma/client";
 import Joi from "joi";
 
-export type TaskMinifield = Pick<Task, 'id' | 'title' | 'status' | 'content' | 'created_at' | 'priority'>
+export type TaskMinifield = Pick<Task, 'id' | 'title' | 'status' | 'content' | 'created_at'> & {
+    priority: TaskPriority
+}
 
 export type TaskStatus = Status
 
-export type TaskPayload = Pick<Task, 'title' | 'content' | 'priority'>
+export type TaskPayload = Pick<Task, 'title' | 'content'> & {
+    priority: TaskPriority
+}
 
 export const TaskPayloadSchema = Joi.object({
     title: Joi.string().required(),
