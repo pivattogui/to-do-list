@@ -1,4 +1,3 @@
-import { SignInResponse, signIn } from "next-auth/react"
 import TextInput from "../components/TextInput"
 import { useState, KeyboardEvent } from "react"
 import { useRouter } from "next/router"
@@ -6,7 +5,6 @@ import { toast } from "react-toastify"
 import { toastPromiseUpdate } from "../helpers/toastPromise"
 import Button from "../components/Button"
 import { registerUser } from "../services/UserService"
-import Modal from "../components/Modal"
 import Footer from "../components/Footer"
 
 export default function Register() {

@@ -68,7 +68,7 @@ export function TaskEditor() {
                 <span className="ml-2 font-semibold text-gray-500">Voltar</span>
             </div>
 
-            <div className="relative mt-4 px-4 h-full sm:flex sm:flex-col sm:justify-center">
+            <div className="relative mt-4 px-4 h-full sm:flex sm:flex-col sm:justify-center pb-3">
                 <div className="border-gray-200 rounded-lg shadow-sm overflow-hidden border ring-0 focus-within:ring-0 focus-within:ring-gray-200">
                     <div className="flex items-center justify-between">
                         <input
@@ -93,7 +93,7 @@ export function TaskEditor() {
                     <div className="border-b"></div>
                     <textarea
                         placeholder="Escreva aqui a descrição da sua tarefa..."
-                        rows={18}
+                        rows={23}
                         className="focus:outline-none focus:border-0 resize-none block w-full px-4 py-2 text-gray-700 transition-colors text-sm placeholder-gray-500 bg-white"
                         value={content}
                         onChange={(e) => setContent(e?.target?.value)}
