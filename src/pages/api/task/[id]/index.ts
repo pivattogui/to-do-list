@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { TaskPayload, TaskPayloadSchema, TaskStatus, TaskStatusSchema } from "../../../../types/task";
+import { TaskPayload, TaskPayloadSchema, TaskPriority, TaskStatus, TaskStatusSchema } from "../../../../types/task";
 import prisma from '../../../../lib/prisma'
 
 export default async function handler(
@@ -24,7 +24,7 @@ export default async function handler(
                     data: {
                         title: payload.title,
                         content: payload.content,
-                        priority: payload.priority
+                        priority: payload.priority as TaskPriority
                     }
                 })
 
