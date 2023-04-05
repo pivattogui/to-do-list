@@ -36,6 +36,7 @@ export function TaskEditor() {
 
         createTask({ title, content, priority }).then(() => {
             toast.update(toastId, toastPromiseUpdate('success', 'Tarefa criada com sucesso!'))
+            setShowTask(false)
             setLoading(false)
         })
     }
